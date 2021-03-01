@@ -1,0 +1,113 @@
+body, html {
+    height: 100%;
+}
+.first{
+    height: 50px;
+    background-color: darkgreen;
+}
+.heading{
+    text-align: center;
+    color: white;
+}
+
+.display-4{
+    text-align: center;
+}
+.lead{
+    text-align: center;
+}
+
+.carousel-item{
+  height: 500px;
+} 
+.carousel-item img{
+  display: block;
+  height: auto;
+  position: absolute;
+  object-fit:cover;
+  top: 0;
+  left: 0;
+  min-height: 300px;
+ 
+}
+
+.carousel-caption{
+    padding-bottom: 250px;
+}
+.navbar{
+    width: 100%;
+}
+.display-5{
+    text-align: center;
+}
+.row{
+    align-content: center;
+}
+
+.btn btn-primary btn-lg{
+    text-align: center;
+}
+.jumbotron-test{
+    margin-top: 0 auto;
+    font-size: 17px;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto
+}
+.text-center{
+    text-align: center;
+}
+.centerd{
+    float:left;
+    margin-left:160px;
+    text-align:center;
+    color: white;
+}
+
+.second2{
+    background-color: lightgreen;
+    height: 40px;
+    text-align: center;
+    position: relative;
+}
+
+
+
+.buttonContainer{
+    padding-left: 1200px;
+    size: 100%;
+}
+.containertext{
+    width: 500px;
+    background-color: darkgrey;
+}
+     
+
+
+
+ footer{
+    background: #215525;
+    background: -webkit-linear-gradient(59deg, #33c760, #097a18);
+    background: linear-gradient(59deg, #297733, #1b6819);
+    color: white;
+    margin-top:100px;
+  }
+  
+  footer a {
+    color: #fff;
+    font-size: 14px;
+    transition-duration: 0.2s;
+  }
+  
+  
+  
+  .copy {
+    font-size: 12px;
+    padding: 10px;
+    border-top: 1px solid #FFFFFF;
+  }
+  
+  .footer-middle {
+    padding-top: 2em;
+    color: white;
+  }

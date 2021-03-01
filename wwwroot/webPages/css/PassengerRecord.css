@@ -1,0 +1,49 @@
+*{
+    color: black;
+}
+.first{
+    height: 50px;
+    background-color: darkgreen;
+}
+.heading{
+    text-align: center;
+    color: white;
+}
+.second{
+    height: 50px;
+    background-color: #0FCD38;
+}
+.display-4{
+    text-align: center;
+}
+.container1{
+    background-color: darkgreen;
+    color: white;
+}
+.footer{
+    background: #16222A;
+    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+    background: linear-gradient(59deg, #3A6073, #16222A);
+    color: white;
+    margin-top:100px;
+}
+.footer a {
+    color: #fff;
+    font-size: 14px;
+    transition-duration: 0.2s;
+}
+.copy {
+    font-size: 12px;
+    padding: 10px;
+    border-top: 1px solid #FFFFFF;
+}
+.footer-middle {
+    padding-top: 2em;
+    color: white;
+}
+.col-sm-2 col-form-label{
+    margin-left: 10px;
+}
+.rightButton{
+    text-align: right;
+}

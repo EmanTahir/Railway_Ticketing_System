@@ -1,0 +1,56 @@
+.first{
+  height: 50px;
+    background-color: darkgreen;
+}
+.heading{
+  text-align: center;
+  color: white;
+}
+.container-fluid{
+  width: 100%;
+}
+.box{
+  width: 100px;
+  height:500px;
+}
+.buttons{
+  position: absolute;
+  top:50%;
+  left:38%;
+  font-family: sans-serif;
+  color: white;
+  text-align: center;
+}
+.btn{
+  width: 300px;
+  height: 50px;
+  text-align: center;
+  
+  
+}
+footer{
+  background: #215525;
+  background: -webkit-linear-gradient(59deg, #33c760, #097a18);
+  background: linear-gradient(59deg, #297733, #1b6819);
+  color: white;
+  margin-top:100px;
+}
+
+footer a {
+  color: #fff;
+  font-size: 14px;
+  transition-duration: 0.2s;
+}
+
+
+
+.copy {
+  font-size: 12px;
+  padding: 10px;
+  border-top: 1px solid #FFFFFF;
+}
+
+.footer-middle {
+  padding-top: 2em;
+  color: white;
+}

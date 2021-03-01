@@ -1,0 +1,54 @@
+.first{
+  height: 50px;
+  background-color: darkgreen;
+}
+.heading{
+    text-align: center;
+    color: white;
+}
+.jumbotron-fluid{
+    background-color: white;
+    align-content: left;
+}
+.buttonContainer{
+    text-align: right;
+    margin-right: 100px;
+}
+.input-groupl{
+    border: black;
+}
+.lead1{
+    text-align: center;
+}
+.row{
+   margin-left:100px;
+}
+.placeholder{
+  text-align: center;
+}
+footer{
+  background: #215525;
+  background: -webkit-linear-gradient(59deg, #33c760, #097a18);
+  background: linear-gradient(59deg, #297733, #1b6819);
+  color: white;
+  margin-top:100px;
+}
+
+footer a {
+  color: #fff;
+  font-size: 14px;
+  transition-duration: 0.2s;
+}
+
+
+
+.copy {
+  font-size: 12px;
+  padding: 10px;
+  border-top: 1px solid #FFFFFF;
+}
+
+.footer-middle {
+  padding-top: 2em;
+  color: white;
+}
