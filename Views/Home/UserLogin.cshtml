@@ -1,0 +1,143 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/webPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/webPages/css/User Login.css">
+    <title>LOGIN</title>
+
+    <script type="text/javascript">
+        function validate() {
+
+            if (document.myForm.Email.value == "") {
+                alert("Please provide your Email!");
+                document.myForm.Email.focus();
+                return false;
+            }
+            return (true);
+        }
+    </script>
+    
+</head>
+<body class="">
+    <style>
+        body {
+            background-image: url("/webPages/Loginpage.jpg");
+            background-color: black;
+            background-repeat: no-repeat;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+    </style>
+    <div class="first">
+        <h1 class="heading">BOOK YOUR TRAIN</h1>
+    </div>
+    <div class="second">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/index">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/viewStations">View Stations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/viewTrains">Trains Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/AboutUs">About Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid bg">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-50">
+                <form class="form-container" action="/Home/UserLogin" method="POST">
+                    <div class="text-center">
+                        <h1>Login</h1>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail"><br>Email</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword">Password</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword">
+                    </div>
+                    <!-- Button trigger modal -->
+                    <a type="button" class="" style="text-decoration: underline; color: darkblue;" data-toggle="modal" data-target="#exampleModal">
+                        forget password
+                    </a>
+                    <br><br>
+                    <!--<p><a href="" data-toggle="modal" data-target="#staticBackdrop">forgot password?</a></p> <br> -->
+
+                    <button class="btn btn-block" type="submit" style="background-color: darkgreen; color: #ffffff;">Login</button><br>
+                    @*<button type="submit" class="btn btn-block" , style="background-color: darkgreen; color: #ffffff;">Login as Administrator</button>*@<br><br>
+                    <p class="text-center">Don't have an account yet? <a href="/Passenger/Register">Register</a></p>
+
+                </form>                
+                <!-- Modal -->
+                    <div class="">
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form name="myForm" action="/Home/ResetPassword" method="post">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlInput1">Email address</label>
+                                                <input type="email" name="emailchk" class="form-control" id="exampleFormControlInput1"
+                                                       placeholder="name@example.com" required>
+                                            </div>
+
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button name ="pressButton" value="Next" type="submit" class="btn btn-primary">Next</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+    </div>
+    </div><br><br><br><br>
+    <script src="~/webPages/js/jquery.js"></script>
+    <script src="~/webPages/js/bootstrap.min.js"></script>
+</body>
+</html>

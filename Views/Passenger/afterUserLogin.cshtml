@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/webPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/webPages/css/afterUserLogin.css">
+
+    <title>Document</title>
+</head>
+<body class="">
+    <style>
+        body {
+            background: url('/webPages/train4.jpg')no-repeat center center fixed;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            ;
+        }
+    </style>
+    <div class="first">
+        <h1 class="heading">BOOK YOUR TRAIN</h1>
+    </div>
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Home/index">Home Page <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/AboutUs">About US</a>
+                    </li>
+                </ul>
+            </div>
+    </div>
+    <div class="box">
+        <div class="buttons">
+            <a class="btn btn-success" href="/Home/viewTrains" role="button">View Train Schedule</a><br><br>
+            <a class="btn btn-success" href="/Home/viewStations" role="button">View Stations</a><br><br>
+            <form action="/Booking/BookTicket" method="post"><input type="hidden" name="email" value="@ViewData["emaill"]" /><a style="color: white;"><button type="submit" class="btn btn-block btn-lg btn-success" style=" width: 35%; margin: auto;">Book Ticket</button></a></form><br>
+            @*<form action="/Booking/BookTicket" method="post"><input type="hidden" name="email" value="@ViewData["emaill"]" /><a class="btn btn-success" type="Submit" href="/Booking/BookTicket" role="button">Book Ticket</a></form><br>*@<br>
+            <a class="btn btn-success" href="/Home/UserLogin" role="button">Back</a><br><br>
+        </div>
+
+    </div>
+
+
+
+    <script src="~/webPages/js/jquery.js"></script>
+    <script src="~/webPages/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/webPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/webPages/css/HomePage.css">
+
+    <title>Home Page</title>
+</head>
+<body class="">
+    <style>
+        body {
+            background-image: url("webPages/train5.jpg");
+            background-color: black;
+            background-repeat: no-repeat;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+    </style>
+
+    <div class="section-1 box"></div>
+
+    <div class="section-2 box1">
+        <div class="heading-1">
+            <h1><b>BOOK YOUR TRAIN</b></h1>
+            <h5>One of the top best platforms to Book your Tickets</h5>
+        </div>
+    </div>
+    <div class="section-3">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <ul class="list-group list-group-horizontal-lg">
+                    <li class="list-group-item"><img src="~/webPages/AboutUs.jpg"><a class="link" href="/Home/AboutUs"><p class="text-center">About Us</p></a></li>
+                    <li class="list-group-item"><img src="~/webPages/trainSchedule.jpg"><a class="link" href="/Home/viewTrains"><p class="text-center">View Train Schedule</p></a></li>
+                    <li class="list-group-item"><img src="~/webPages/station.png"><a class="link" href="/Home/viewStations"><p class="text-center">View Stations</p></a></li>
+                    <li class="list-group-item"><img src="~/webPages/login.png"><a class="link" href="/Home/UserLogin"><p class="text-center">Login</p></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section-3">
+        <div class="jumbotron jumbotron-fluid1">
+            <div class="container">
+                <h1 class="display-4"><b>E-Ticket Advantages</b></h1><br>
+                <div class="container text-center">
+                    <div><img src="~/webPages/p3.png" asp-append-version="true"><p class="lead">It is very easy to order e-ticket online. E-Ticket cannot be lost or forgotten</p></div><br>
+                    <div><img src="~/webPages/p4.png"><p class="lead">There is no need to go to the ticket office additionaly before your trip.<br>Save your money and nerves</p></div><br>
+                    <div><img src="~/webPages/p5.png"><p class="lead"><p>To Order ticket, all you need is internet, a couple of minutes and a payment card</p></div><br><br>
+                    <h1><b>We save your time while purchasing, check-in and during the travel</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/webPages/js/jquery.js"></script>
+    <script src="~/webPages/js/bootstrap.min.js"></script>
+    <script src="~/https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init();
+    </script>
+</body>
+
+</html>

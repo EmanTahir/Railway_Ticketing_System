@@ -1,0 +1,83 @@
+﻿@model IEnumerable<RTS_Term_Project.Models.Register>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/webPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/webPages/css/Register.css">
+    <title>Document</title>
+    <style>
+        footer {
+            text-align: center;
+            padding: 3px;
+            background-color: darkgreen;
+            color: black;
+        }
+    </style>
+</head>
+<body class="">
+    <style>
+        body {
+            background-image: url('/webPages/Loginpage.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            ;
+        }
+    </style>
+    <div class="first">
+        <h1 class="heading">BOOK YOUR TRAIN</h1>
+    </div>
+
+    <div class="container-fluid bg">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <form class="form-container" method="post" action="~/Pass/Register">
+                    <div class="text-center">
+                        <h1>Create Account</h1>
+                        <p>Get Started with your free account!</p>
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName">Name</label>
+                        <input type="text" class="form-control" name="name" id="exampleInputName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName">CNIC</label>
+                        <input type="text" class="form-control" name="cnic" id="exampleInputName" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPhone">Phone Number</label>
+                        <input type="text" class="form-control" name="contact" id="exampleInputPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail">Email</label>
+                        <input type="email" class="form-control" name="mail" id="exampleInputEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword">Password</label>
+                        <input type="password" class="form-control" name="password" id="exampleInputPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword2">Confirm Password</label>
+                        <input type="password" class="form-control" name="r_password" id="exampleInputPassword2" required>
+                    </div>
+                    <button class="btn btn-block btn-lg" type="submit" value="Create Account" style="background-color: darkgreen; color: #ffffff;"> Create Account </button>
+                    <br>
+                    <p class="text-center">Have an account? <a href="/Home/UserLogin">Log In</a> </p>
+                </form>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        </div>
+    </div><br><br><br><br>
+    <script src="~/webPages/js/jquery.js"></script>
+    <script src="~/webPages/js/bootstrap.min.js"></script>
+</body>
+</html>

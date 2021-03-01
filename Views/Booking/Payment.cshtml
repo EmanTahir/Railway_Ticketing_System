@@ -1,0 +1,185 @@
+﻿@using System.Data;
+@using System.Collections.Generic;
+@using System.Data.SqlClient;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@*@{
+    SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFAV4Q6\\SQLEXPRESS;Initial Catalog=RTS;Integrated Security=True");
+    con.Open();
+    SqlCommand cmd = new SqlCommand ", con);
+    SqlDataAdapter adaptor = new SqlDataAdapter(cmd);
+    DataSet data = new DataSet();
+    adaptor.Fill(data);
+    DataTable table;
+    table = data.Tables[0];
+    cmd.ExecuteNonQuery();
+    con.Close();
+}*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/webPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/webPages/css/Payment.css">
+    <title>Online Payment</title>
+    <style>
+        footer {
+            text-align: center;
+            padding: 3px;
+            background-color: darkgreen;
+            color: black;
+        }
+    </style>
+    <style type="text/css">
+        label + label {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="first">
+        <h1 class="heading">BOOK YOUR TRAIN</h1>
+    </div>
+    <div class="second">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/viewStations">View Stations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/viewTrains">Trains Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/UserLogin">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/AboutUs">About Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <br><br><br><br>
+    <form method="post" action="/Booking/Payment">
+        <div class="section-1">
+
+            <div class="section-2">
+                <div class="container-fluid bg">
+                    <div class="row">
+                        <div class="col-md-15 col-lg-15 col-xs-20"></div>
+                        <div class="col-md-15 col-lg-15 col-xs-20">
+                            @*<form style="margin:0px 0px 0px 80px" action="/">*@
+                            <div class="text-center">
+                                <h1>Online Payment</h1>
+                                <br>
+                                <p>To reserve seats please complete and submit the payment form.</p>
+                                <hr>
+                                <br>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputArrival">Mobile No.</label>
+                                <input type="text" name="number" class="form-control" id="exampleInputArrival" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputDeparture"><br>Email</label>
+                                <input type="email" name="pmail" class="form-control" id="exampleInputDeparture" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputStation">Account</label>
+                                <input type="text" name="pAccount" class="form-control" id="exampleInputStation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputDate">CNIC No.</label>
+                                <input type="text" name="pCNIC" class="form-control" id="exampleInputDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputArrival"></label>
+                                <input type="hidden" name="email" class="form-control" id="exampleInputArrival" value="@ViewData["emaill"]">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputArrival"></label>
+                                <input type="hidden" name="price" class="form-control" id="exampleInputArrival" value="@ViewData["pricePerPerson"]">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputArrival"></label>
+                                <input type="hidden" name="nfp" class="form-control" id="exampleInputArrival" value="@ViewData["Pasengers"]">
+                            </div>
+                            @*<div class="form-group">
+            <label for="exampleInputTime">Credit card No.</label>
+            <input type="text" name="" class="form-control" id="exampleInputTime" required>
+        </div>*@
+
+                            @*</form>*@
+                        </div>
+                    </div>
+                </div>
+            </div><br><br>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    @*<form class="trainform">*@
+
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col">
+                                <label>Amount:</label>
+                                <input type="text" readonly class="form-control" placeholder="0000.00" value="@ViewData["pricePerPerson"]">
+                            </div>
+                            <div class="col">
+                                <label>Tax:</label>
+                                <input type="text" readonly class="form-control" placeholder="0000.00">
+                            </div>
+                            <div class="col">
+                                <label>Total:</label>
+                                <input type="text" readonly class="form-control" placeholder="0000.00" value="@ViewData["pricePerPerson"]">
+                            </div>
+                        </div>
+                    </div>
+
+                    @*</form>*@
+                </div>
+            </div>
+        </div>
+        <div class="text-for-right">
+            <a href="/Booking/SelectTrain"> <button type="submit" class="btn btn-lg btn-success" , style=" color: #ffffff;">Back</button></a>
+            <a href="" data-toggle="modal" data-target="#staticBackdrop"><button type="submit" class="btn-lg btn-success">Next</button></a>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="/">
+                                <div class="form-group">
+                                    <p class="lead"><label for="exampleFormControlInput1 align-items-center">Your payment will confirmed through Email<br>Thankyou</label></p>
+                                </div>
+                                <div class="modal-footer">
+                                    @*<a href="/Booking/TicketView">*@<button type="submit" class="btn btn-secondary">OK</button>@*</a>*@
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="~/webPages/js/jquery.js"></script>
+    <script src="~/webPages/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+﻿@using System.Data;
+@using System.Collections.Generic;
+@using System.Data.SqlClient;
+@{
+}
+
+@{
+    SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFAV4Q6\\SQLEXPRESS;Initial Catalog=RTS;Integrated Security=True");
+    con.Open();
+    SqlCommand cmd = new SqlCommand("Select * from Train", con);
+    SqlDataAdapter adaptor = new SqlDataAdapter(cmd);
+    DataSet data = new DataSet();
+    adaptor.Fill(data);
+    DataTable table = data.Tables[0];
+    cmd.ExecuteNonQuery();
+    con.Close();
+}
+
+@{
+    //SqlConnection con1 = new SqlConnection("Data Source=DESKTOP-KFAV4Q6\\SQLEXPRESS;Initial Catalog=RTS;Integrated Security=True");
+    //con1.Open();
+    //SqlCommand cmd1 = new SqlCommand("Update Station set st_name = @station_name and Station_city = @station_city where station_id = @station_id", con1);
+    //var st_no =
+    //cmd1.Parameters.AddWithValue("@station_id", st_no);
+    //cmd1.ExecuteNonQuery();
+    //con1.Close();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/webPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/webPages/css/ManageStations.css">
+    <title>Manage Trains</title>
+    <script>
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $("#btn1").append(FORM);
+            });
+    </script>
+    <script>
+        function Edit(i) {
+            event.preventDefault();
+
+            //alert(document.getElementById("myTable").rows[i].cells[1].innerHTML);
+            //alert(document.getElementById("myTable").rows[i].cells[2].innerHTML);
+            document.getElementById('tr_id').setAttribute("value", document.getElementById("myTable").rows[i].cells[0].innerHTML);
+            document.getElementById('t_name').setAttribute("value", document.getElementById("myTable").rows[i].cells[1].innerHTML);
+            document.getElementById('tot_seats').setAttribute("value", document.getElementById("myTable").rows[i].cells[2].innerHTML);
+            document.getElementById('avail_seats').setAttribute("value", document.getElementById("myTable").rows[i].cells[3].innerHTML);
+            return true;
+        }
+    </script>
+</head>
+<body class="body1">
+    <div class="first">
+        <h1 class="heading">BOOK YOUR TRAIN</h1>
+    </div>
+    <div class="second">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/index">Home</a>
+                    </li>
+                    <li class="nav-item active" style="text-align: right;">
+                        <a class="nav-link" href="/Home/UserLogin">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/AboutUs">About Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <br><br><br>
+    <div class="text-center">
+        <h1>Manage Train Details</h1><br />
+
+    </div>
+
+    <div class="table table-striped">
+        @*<label for="label1" class="col-sm-4 col-form-label" style="font-size: larger;"><b>Station No.</b></label>
+            <label for="label2" class="col-sm-4 col-form-label" style="font-size: larger;"><b>Station Name</b></label>
+            <label for="label3" class="col-sm-4 col-form-label" style="font-size: larger;"><b>Address</b></label>*@
+        <table class="table table-striped" id ="myTable" name ="myTable">
+            <thead>
+                <tr class="container">
+                    <th scope="col" style="text-align: center;">&nbsp; Train Number</th>
+                    <th scope="col" style="text-align: center;">&nbsp; Train Name</th>
+                    <th scope="col" style="text-align: center;">&nbsp; Total Seats</th>
+                    <th scope="col" style="text-align: center;">&nbsp; Available Seats</th>
+                    <th scope="col" style="text-align: center;">&nbsp; Actions </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < table.Rows.Count; i++)
+                {
+                <tr>
+                    <td scope="row" style="text-align: center;">@table.Rows[i].ItemArray[0]</td>
+                    <td style="text-align: center;">@table.Rows[i].ItemArray[1]</td>
+                    <td style="text-align: center;">@table.Rows[i].ItemArray[2]</td>
+                    <td style="text-align: center;">@table.Rows[i].ItemArray[3]</td>
+                    <td>
+                        <a href="" onclick="return confirm('Do you want to delete?')">
+                            <form method="POST" action="/Admin/ManageTrains">
+                                <input type="hidden" name="t_no" value="@table.Rows[i].ItemArray[0]" />
+                                <button type="submit" name="thisButton" value="Delete1" style="width:100%">Delete</button>
+                            </form>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="">
+                            <form name="" action="" method="GET">
+                                <input type="hidden" name="" value="@table.Rows[i].ItemArray[0]" />
+                                <button type="submit" name="thisButton" value="Update1" style="width:100%" onclick="return Edit(@i+1, event)">Update</button>
+                            </form>
+
+                        </a>
+                    </td>
+                    <td></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+
+    <hr />
+    <form style="margin:0px 40px 0px 40px" method="POST" action="/Admin/ManageTrains">
+        <div class="row">
+            <div class="col">
+            <input type="text" class="form-control form-control-sm" name="tr_id" id="tr_id" placeholder="Train No." readonly>
+        </div>
+            <div class="col">
+                <input type="text" class="form-control form-control-sm" name="t_name" id="t_name" placeholder="Train Name" required>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control form-control-sm" name="tot_seats" id="tot_seats" placeholder="Total Seats" required>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control form-control-sm" name="avail_seats" id="avail_seats" placeholder="Available Seats" required>
+            </div>
+            <div class="text-for-right">
+                <button class="btn btn-success" name="thisButton" value="Insert1" style="background-color: darkgreen; color: #ffffff;">Add</button>
+                <button class="btn btn-success" name="thisButton" value="Save1" style="background-color: darkgreen; color: #ffffff;">Save</button>
+                <!-- <button  class="btn btn-sm" style="background-color: darkgreen; color: #ffffff;">Update</button><br> -->
+            </div>
+        </div>
+    </form>
+    <br>
+    <br>
+    <br>
+    @*<div class="text-center">
+            <button id="btn1" type="submit" class="btn btn-lg" style="background-color: darkgreen; color: #ffffff;">Add</button>
+            <button type="submit" class="btn btn-lg" style="background-color: darkgreen; color: #ffffff;">Save</button><br>
+        </div><br>*@
+    <hr><br>
+    <div class="rightButton">
+        <button type="button" class="btn btn-success" style="background-color: darkgreen; color: #ffffff;"><a href="/Admin/AfterAdminLogin" style="color: white;">Back</a></button><br>
+    </div>
+    </div>
+    <br><br><br><br>
+
+    <script src="~/webPages/js/jquery.js"></script>
+    <script src="~/webPages/js/bootstrap.min.js"></script>
+</body>
+</html>

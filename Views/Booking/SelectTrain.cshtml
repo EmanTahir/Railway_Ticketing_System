@@ -1,0 +1,167 @@
+﻿@using System.Data;
+@using System.Collections.Generic;
+@using System.Data.SqlClient;
+
+@{
+    SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFAV4Q6\\SQLEXPRESS;Initial Catalog=RTS;Integrated Security=True");
+    con.Open();
+    SqlCommand cmd = new SqlCommand("select schedule_id, Train.train_id, train_name, available_seats, from_schedule_time, to_schedule_time, schedule_date, (Select station_name from Station where station_id = Train_Schedule.from_station_id), (Select station_name from Station where station_id = Train_Schedule.to_station_id), price_per_person from Train_Schedule inner join Train on Train_Schedule.train_id = Train.train_id", con);
+    SqlDataAdapter adaptor = new SqlDataAdapter(cmd);
+    DataSet data = new DataSet();
+    adaptor.Fill(data);
+    DataTable table = data.Tables[0];
+
+    cmd.ExecuteNonQuery();
+    con.Close();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/webPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/webPages/css/SelectTrain.css">
+
+    <title>Document</title>
+    @*<script type="text/javascript">
+            function MutExChkList(chk) {
+                var chkList = chk.parentNode.parentNode.parentNode;
+                var chks = chkList.getElementsByTagName("input");
+                for (var i = 0; i < chks.length; i++) {
+                    if (chks[i] != chk && chk.checked) {
+                        chks[i].checked = false;
+                    }
+                }
+            }
+        </script>*@
+    @*<script type="text/javascript">
+        window.onload = function () {
+            var tblFruits = document.getElementById("ss");
+            var chks = tblFruits.getElementsByTagName("INPUT");
+            for (var i = 0; i < chks.length; i++) {
+                chks[i].onclick = function () {
+                    for (var i = 0; i < chks.length; i++) {
+                        if (chks[i] != this && this.checked) {
+                            chks[i].checked = false;
+                        }
+                    }
+                };
+            }
+        };
+    </script>*@
+    <script type="text/javascript">
+        //Near checkboxes
+        $('.product-list').click(function () {
+            $(this).siblings('input:checkbox').prop('checked', false);
+        });
+    </script>
+
+</head>
+<body class="body1">
+    <div class="first">
+        <h1 class="heading">BOOK YOUR TRAIN</h1>
+    </div>
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Home/index">Home Page <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/viewStations">View Stations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/viewTrains">Train Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/AboutUs">About Us</a>
+                    </li>
+                </ul>
+            </div>
+    </div><br><br>
+    <h5 class="lead"><b>Select the Train from below available trains:</b></h5>
+    <form method="post" action ="/Booking/SelectTrain">
+        <div class="jumbotron jumbotron-fluid align-content-center">
+            <div class="container-fluid justify-content-center">
+                <div style="display:inline; padding: 10px;">
+                    <label style="margin: 5px 10px 5px 0;">Train Name</label>
+                    <label style="margin: 5px 10px 5px 0;">Seats</label>
+                    <label style="margin: 5px 10px 5px 0;">From Time</label>
+                    <label style="margin: 5px 10px 5px 0;">To Time</label>
+                    <label style="margin: 5px 10px 5px 0;"> Date</label>
+                    <label style="margin: 5px 10px 5px 0;">From Station</label>
+                    <label style="margin: 5px 10px 5px 0;">To Station</label>
+                    <label style="margin: 5px 10px 5px 0;">Price</label>
+                </div>
+                @for (int i = 0; i < table.Rows.Count; i++)
+                {
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+
+                                <input type="radio" class="form-check-input" name="checklist" id="ss" value="@table.Rows[i].ItemArray[0]" tabindex="@i+1" onclick="return MutExChkList(this);">
+                                <label>@table.Rows[i].ItemArray[2] - @table.Rows[i].ItemArray[3] - @table.Rows[i].ItemArray[4] - @table.Rows[i].ItemArray[5] - @table.Rows[i].ItemArray[6] - @table.Rows[i].ItemArray[7] - @table.Rows[i].ItemArray[8] - @table.Rows[i].ItemArray[9]</label>
+                                @*<label><input type ="hidden" name="price" class="form-control" id="exampleInputArrival" value="@table.Rows[i].ItemArray[9]" /></label>*@
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputArrival"></label>
+                <input type="hidden" name="email" class="form-control" id="exampleInputArrival" value="@ViewData["emaill"]">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputArrival"></label>
+                <input type="hidden" name="nfp" class="form-control" id="exampleInputArrival" value="@ViewData["Pasengers"]">
+            </div>
+            
+        </div>
+    <div class="buttonContainer">
+        <a href="BookTicket.html"><button type="button" class="btn-lg btn-success">Back</button></a>
+        <a href="" data-toggle="modal" data-target="#staticBackdrop"><button type="button" class="btn-lg btn-success">Next</button></a>
+    </div>
+    @*</form>*@
+    <div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Payment Method</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @*<form method="post" action ="/Booking/SelectTrain">*@
+                            <div class="form-group">
+                                <p class="lead"><label for="exampleFormControlInput1 align-items-center">Do you want to pay online?</label></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" name ="sbutton" value="yes" class="btn btn-secondary">Yes</button>
+                                <button type="submit" name="sbutton" value="no" class="btn btn-secondary">No/Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/webPages/js/jquery.js"></script>
+    <script src="~/webPages/js/bootstrap.min.js"></script>
+</body>
+
+</html>

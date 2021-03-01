@@ -1,0 +1,102 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/webPages/css/bootstrap.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <title>Home Page</title>
+    <style>
+        html {
+            width: 100%;
+            height: 100%
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/webPages/js/jquery.js"></script>
+    <script src="~/webPages/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+<div class="footerclass">
+    <footer class="mainfooter" role="contentinfo">
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+
+                        <div class="footer-pad">
+                            <h4>Address:</h4>
+                            <ul class="list-unstyled">
+                                <p></p>
+                                <li>Abc town, XYZ street, district Lahore, Pakistan</li>
+                                <br>
+                                <li><h5>Office hours</h5></li>
+                                <li>Mon-Fri</li>
+                                <li>9:00am to 9:00pm</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+
+                        <div class="footer-pad">
+                            <h4>Contact:</h4>
+                            <ul class="list-unstyled">
+                                <li>+92 123 456789</li>
+                                <li>+92 765 098764</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+
+                        <div class="footer-pad">
+                            <h4>Email Address:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#">RTS1006@gmail.com</a></li>
+                                <br>
+                                <li><h5>Mail</h5></li>
+                                <li>PO BOX 1234</li>
+                                <li>abcd, lahore,Pakistan</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Follow Us</h4>
+                        <ul class="social-network social-circle">
+                            facebook.com
+                            <br>
+                            instagram.com
+                            <br>
+                            twitter.com
+                            <br>
+                            linkedin.com
+                            <br>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 copy">
+                        <p class="text-center">&copy; Copyright 2020 - Railway Ticketing System.  All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</html>
