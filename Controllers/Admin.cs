@@ -256,10 +256,35 @@ namespace RTS_Term_Project.Controllers
         }
         
 
-        public IActionResult PassengerRecord()
+        public IActionResult PassengerRecord(string thisButton, string bookID, string amount, string b_date, string onlinebooking, string nfp, string schedule, string b_type, string a_type)
         {
-            if()
+            if(thisButton == "Delete1")
             {
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFAV4Q6\\SQLEXPRESS;Initial Catalog=RTS;Integrated Security=True");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Delete from Ticket where Ticket.booking_id = @thisId", con);
+                cmd.Parameters.AddWithValue("@thisId", bookID);
+                cmd.ExecuteNonQuery();
+                SqlCommand cmd2 = new SqlCommand("Delete from Booking where booking_id = @thisId", con);
+                cmd2.Parameters.AddWithValue("@thisId", bookID);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+
+            }
+            else if(thisButton == "Save2")
+            {
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFAV4Q6\\SQLEXPRESS;Initial Catalog=RTS;Integrated Security=True");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Update Booking set amount = @newamount, booking_date = @newdate, online_booking = @newinfo, no_of_passenger = @n, schedule_id = @id, booking_type = @newtype, account = @newaccount",con);
+                cmd.Parameters.AddWithValue("@newamount", amount);
+                cmd.Parameters.AddWithValue("@newdate", b_date);
+                cmd.Parameters.AddWithValue("@newinfo", onlinebooking);
+                cmd.Parameters.AddWithValue("@n", nfp);
+                cmd.Parameters.AddWithValue("@id", schedule);
+                cmd.Parameters.AddWithValue("@newtype", b_type);
+                cmd.Parameters.AddWithValue("@newaccount", a_type);
+                cmd.ExecuteNonQuery();
+                con.Close();
 
             }
             return View();
