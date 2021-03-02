@@ -7,7 +7,7 @@
 @{
     SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFAV4Q6\\SQLEXPRESS;Initial Catalog=RTS;Integrated Security=True");
     con.Open();
-    SqlCommand cmd = new SqlCommand("SELECT Booking.cnic, Ticket.ticket_id, Train_Schedule.schedule_date, (Select Station.station_name where Station.station_id = Train_Schedule.from_station_id) as 'from_station',(Select Station.station_name where Station.station_id = Train_Schedule.to_station_id) as 'to_station', Booking.amount from(((Booking inner join Ticket on Ticket.booking_id = 2) inner join Train_Schedule on  Booking.schedule_id = Train_Schedule.schedule_id) inner join Station on Ticket.station_id = Station.station_id)  ", con);
+    SqlCommand cmd = new SqlCommand("SELECT Booking.cnic, Ticket.ticket_id, Train_Schedule.schedule_date, (Select Station.station_name where Station.station_id = Train_Schedule.from_station_id) as 'from_station', (Select Station.station_name where Station.station_id = Train_Schedule.to_station_id) as 'to_station', Booking.amount from(((Booking inner join Ticket  on Ticket.booking_id = Booking.booking_id AND Booking.booking_id = (Select MAX(Booking.booking_id) from Booking)) inner join Train_Schedule on  Booking.schedule_id = Train_Schedule.schedule_id) inner join Station on Ticket.station_id = Station.station_id) ", con);
     SqlDataAdapter adaptor = new SqlDataAdapter(cmd);
     DataSet data = new DataSet();
     adaptor.Fill(data);
