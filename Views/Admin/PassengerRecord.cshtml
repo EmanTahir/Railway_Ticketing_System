@@ -25,6 +25,26 @@
     <link rel="stylesheet" href="~/webPages/css/ManageStations.css">
     <title>Passenger Record</title>
 
+    <script>
+        function Edit(i) {
+            event.preventDefault();
+
+            //alert(document.getElementById("myTable").rows[i].cells[1].innerHTML);
+            //alert(document.getElementById("myTable").rows[i].cells[2].innerHTML);
+            document.getElementById('bookingno').setAttribute("value", document.getElementById("myTable").rows[i].cells[0].innerHTML);
+            document.getElementById('cnic').setAttribute("value", document.getElementById("myTable").rows[i].cells[1].innerHTML);
+            document.getElementById('amount').setAttribute("value", document.getElementById("myTable").rows[i].cells[2].innerHTML);
+            document.getElementById('b_date').setAttribute("value", document.getElementById("myTable").rows[i].cells[3].innerHTML);
+            document.getElementById('onlinebooking').setAttribute("value", document.getElementById("myTable").rows[i].cells[4].innerHTML);
+            document.getElementById('nfp').setAttribute("value", document.getElementById("myTable").rows[i].cells[5].innerHTML);
+            document.getElementById('schedule').setAttribute("value", document.getElementById("myTable").rows[i].cells[6].innerHTML);
+            document.getElementById('b_type').setAttribute("value", document.getElementById("myTable").rows[i].cells[7].innerHTML);
+            document.getElementById('a_type').setAttribute("value", document.getElementById("myTable").rows[i].cells[8].innerHTML);
+            document.getElementById('paycheck').setAttribute("value", document.getElementById("myTable").rows[i].cells[9].innerHTML);
+            return true;
+        }
+    </script>
+
 </head>
 <body class="body1">
     <div class="first">
@@ -57,13 +77,13 @@
     </div><br><br>
     <form>
         @*<div class="form-group row">
-            <label for="label1" class="col-sm-3 col-form-label" style="font-size: larger; margin:0px 180px 0px 90px"><b>Name</b></label>
-            <label for="label2" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 10px 0px -330px;"><b>Email</b></label>
-            <label for="label3" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 10px 0px -175px;"><b>Contact</b></label>
-            <label for="label4" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 10px 0px -180px;"><b>Train No.</b></label>
-            <label for="label4" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 10px 0px -170px;"><b>Ticket No.</b></label>
-            <label for="label6" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 0px 0px -145px;"><b>Price</b></label>
-        </div>*@
+                <label for="label1" class="col-sm-3 col-form-label" style="font-size: larger; margin:0px 180px 0px 90px"><b>Name</b></label>
+                <label for="label2" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 10px 0px -330px;"><b>Email</b></label>
+                <label for="label3" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 10px 0px -175px;"><b>Contact</b></label>
+                <label for="label4" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 10px 0px -180px;"><b>Train No.</b></label>
+                <label for="label4" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 10px 0px -170px;"><b>Ticket No.</b></label>
+                <label for="label6" class="col-sm-3 col-form-label" style="font-size: larger; margin: 0px 0px 0px -145px;"><b>Price</b></label>
+            </div>*@
         <table class="table table-striped" id="myTable" name="myTable">
             <thead>
                 <tr class="container">
@@ -82,40 +102,77 @@
             <tbody>
                 @for (int i = 0; i < table.Rows.Count; i++)
                 {
-                <tr>
-                    <td scope="row" style="text-align: center;">@table.Rows[i].ItemArray[0]</td>
-                    <td style="text-align: center;">@table.Rows[i].ItemArray[1]</td>
-                    <td style="text-align: center;">@table.Rows[i].ItemArray[2]</td>
-                    <td style="text-align: center;">@table.Rows[i].ItemArray[3]</td>
-                    <td style="text-align: center;">@table.Rows[i].ItemArray[4]</td>
-                    <td style="text-align: center;">@table.Rows[i].ItemArray[5]</td>
-                    <td style="text-align: center;">@table.Rows[i].ItemArray[6]</td>
-                    <td style="text-align: center;">@table.Rows[i].ItemArray[7]</td>
-                    <td style="text-align: center;">@table.Rows[i].ItemArray[8]</td>
-                    <td style="text-align: center;">@table.Rows[i].ItemArray[9]</td>
-                    <td>
-                        <a href="" onclick="return confirm('Do you want to delete?')">
-                            <form method="POST" action="/Admin/PassengerRecord">
-                                <input type="hidden" name="t_no" value="@table.Rows[i].ItemArray[0]" />
-                                <button type="submit" name="thisButton" value="Delete1" style="width:100%">Delete</button>
-                            </form>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="">
-                            <form name="" action="" method="GET">
-                                <input type="hidden" name="" value="@table.Rows[i].ItemArray[0]" />
-                                <button type="submit" name="thisButton" value="Update1" style="width:100%" onclick="return Edit(@i+1, event)">Update</button>
-                            </form>
+    <tr>
+        <td scope="row" style="text-align: center;">@table.Rows[i].ItemArray[0]</td>
+        <td style="text-align: center;">@table.Rows[i].ItemArray[1]</td>
+        <td style="text-align: center;">@table.Rows[i].ItemArray[2]</td>
+        <td style="text-align: center;">@table.Rows[i].ItemArray[3]</td>
+        <td style="text-align: center;">@table.Rows[i].ItemArray[4]</td>
+        <td style="text-align: center;">@table.Rows[i].ItemArray[5]</td>
+        <td style="text-align: center;">@table.Rows[i].ItemArray[6]</td>
+        <td style="text-align: center;">@table.Rows[i].ItemArray[7]</td>
+        <td style="text-align: center;">@table.Rows[i].ItemArray[8]</td>
+        <td style="text-align: center;">@table.Rows[i].ItemArray[9]</td>
+        <td>
+            <a href="" onclick="return confirm('Do you want to delete?')">
+                <form method="POST" action="/Admin/PassengerRecord">
+                    <input type="hidden" name="bookID" value="@table.Rows[i].ItemArray[0]" />
+                    <button type="submit" name="thisButton" value="Delete1" style="width:100%">Delete</button>
+                </form>
+            </a>
+        </td>
+        <td>
+            <a href="">
+                <form name="" action="" method="GET">
+                    <input type="hidden" name="" value="@table.Rows[i].ItemArray[0]" />
+                    <button type="submit" name="thisButton" value="Update1" style="width:100%" onclick="return Edit(@i+1, event)">Update</button>
+                </form>
 
-                        </a>
-                    </td>
-                </tr>
-                }
+            </a>
+        </td>
+    </tr>}
             </tbody>
         </table>
     </form>
     <hr>
+    <form style="margin:0px 40px 0px 40px" method="post" action="/Admin/PassengerRecord">
+        <div class="row">
+            <div class="col">
+                <input type="text" name="bookingno" id="bookingno" class="form-control form-control-sm" placeholder="Booking No." readonly>
+            </div>
+            <div class="col">
+                <input type="text" name="cnic" id="cnic" class="form-control form-control-sm" placeholder="CNIC" required>
+            </div>
+            <div class="col">
+                <input type="text" name="amount" id="amount" class="form-control form-control-sm" placeholder="Amount" required>
+            </div>
+            <div class="col">
+                <input type="text" name="b_date" id="b_date" class="form-control form-control-sm" placeholder="Booking Date" required>
+            </div>
+            <div class="col">
+                <input type="text" name="onlinebooking" id="onlinebooking" class="form-control form-control-sm" placeholder="Onine Booking" required>
+            </div>
+            <div class="col">
+                <input type="text" name="nfp" id="nfp" class="form-control form-control-sm" placeholder="No of Passenger" required>
+            </div>
+            <div class="col">
+                <input type="text" name="schedule" id="schedule" class="form-control form-control-sm" placeholder="Train Schedule" required>
+            </div>
+            <div class="col">
+                <input type="text" name="b_type" id="b_type" class="form-control form-control-sm" placeholder="Booking Type" required>
+            </div>
+            <div class="col">
+                <input type="text" name="a_type" id="a_type" class="form-control form-control-sm" placeholder="Account type" required>
+            </div>
+            <div class="col">
+                <input type="text" name="paycheck" id="paycheck" class="form-control form-control-sm" placeholder="Payment Check No." readonly>
+            </div>
+            <div class="text-for-right">
+                @*<button type="submit" name="button1" value="Insert2" class="btn btn-sm" , style="background-color: darkgreen; color: #ffffff;">Add</button>*@
+                <button type="submit" name="thisButton" value="Save2" class="btn btn-sm" , style="background-color: darkgreen; color: #ffffff;">Save</button><br>
+            </div>
+        </div>
+    </form>
     <br>
 
     <br><br>
