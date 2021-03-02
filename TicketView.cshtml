@@ -1,0 +1,131 @@
+﻿@using System.Data;
+@using System.Collections.Generic;
+@using System.Data.SqlClient;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFAV4Q6\\SQLEXPRESS;Initial Catalog=RTS;Integrated Security=True");
+    con.Open();
+    SqlCommand cmd = new SqlCommand("SELECT Booking.cnic, Ticket.ticket_id, Train_Schedule.schedule_date, (Select Station.station_name where Station.station_id = Train_Schedule.from_station_id) as 'from_station', (Select Station.station_name where Station.station_id = Train_Schedule.to_station_id) as 'to_station', Booking.amount from(((Booking inner join Ticket  on Ticket.booking_id = Booking.booking_id AND Booking.booking_id = (Select MAX(Booking.booking_id) from Booking)) inner join Train_Schedule on  Booking.schedule_id = Train_Schedule.schedule_id) inner join Station on Ticket.station_id = Station.station_id) ", con);
+    SqlDataAdapter adaptor = new SqlDataAdapter(cmd);
+    DataSet data = new DataSet();
+    adaptor.Fill(data);
+    DataTable table;
+    table = data.Tables[0];
+    cmd.ExecuteNonQuery();
+    con.Close();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/webPages/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/webPages/css/Ticket.css">
+    <title>Ticket Details</title>
+    <style>
+        footer {
+            text-align: center;
+            padding: 3px;
+            background-color: darkgreen;
+            color: black;
+        }
+    </style>
+    <style type="text/css">
+        label + label {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body class="body1">
+    <div class="first">
+        <h1 class="heading">BOOK YOUR TRAIN</h1>
+    </div>
+    <div class="second">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/viewStations">View Stations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/viewTrains">Trains Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/UserLogin">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/AboutUs">About Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <br><br><br><br>
+    <div class="section-1">
+
+        <div class="section-2">
+            <div class="container-fluid bg">
+                <div class="row">
+                    <div class="col-md-15 col-lg-15 col-xs-20"></div>
+                    <div class="col-md-15 col-lg-15 col-xs-20">
+                        <form style="margin:0px 0px 0px 80px;">
+                            <div class="text-center">
+                                <h1>Ticket Details</h1>
+                                <br>
+                                <p>Following data has been entered. Please check the details</p>
+                                <hr>
+                                <br>
+                            </div>
+                            @for (int i = 0; i < table.Rows.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label for="exampleInputArrival">CNIC No.</label>
+                                    <input type="text" readonly class="form-control" id="exampleInputArrival" placeholder="xxxxxxxxxx" value="@table.Rows[i].ItemArray[0]">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputStation">Ticket Number</label>
+                                    <input type="text" readonly class="form-control" id="exampleInputStation" placeholder="xxxx" value="@table.Rows[i].ItemArray[1]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputDate">Departure Date</label>
+                                    <input type="text" readonly class="form-control" id="exampleInputDate" placeholder="date" value="@table.Rows[i].ItemArray[2]">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassengers">From</label>
+                                    <input type="text" readonly class="form-control" id="exampleInputPassengers" placeholder="city name" @table.Rows[i].ItemArray[3]>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassengers">To</label>
+                                    <input type="text" readonly class="form-control" id="exampleInputPassengers" placeholder="city name" value="@table.Rows[i].ItemArray[4]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassengers">Total Price</label>
+                                    <input type="number" readonly class="form-control" id="exampleInputPassengers" placeholder="00000.00" value="@table.Rows[i].ItemArray[5]">
+                                </div><br><br>
+                                <div class="text-for-right">
+                                    <a href="/Booking/Payment"><button type="button" class="btn btn-success btn-lg">Back</button></a>
+                                    <a href="/Home/UserLogin"><button type="button" class="btn btn-success btn-lg">OK</button></a>
+                                </div>
+                            }
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+    </div>
+
+    <script src="~/webPages/js/jquery.js"></script>
+    <script src="~/webPages/js/bootstrap.min.js"></script>
+</body>
+</html>
