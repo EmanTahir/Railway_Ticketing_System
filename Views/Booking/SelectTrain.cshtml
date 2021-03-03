@@ -89,75 +89,82 @@
             </div>
     </div><br><br>
     <h5 class="lead"><b>Select the Train from below available trains:</b></h5>
-    <form method="post" action ="/Booking/SelectTrain">
-        <div class="jumbotron jumbotron-fluid align-content-center">
-            <div class="container-fluid justify-content-center">
-                <div style="display:inline; padding: 10px;">
-                    <label style="margin: 5px 10px 5px 0;">Train Name</label>
-                    <label style="margin: 5px 10px 5px 0;">Seats</label>
-                    <label style="margin: 5px 10px 5px 0;">From Time</label>
-                    <label style="margin: 5px 10px 5px 0;">To Time</label>
-                    <label style="margin: 5px 10px 5px 0;"> Date</label>
-                    <label style="margin: 5px 10px 5px 0;">From Station</label>
-                    <label style="margin: 5px 10px 5px 0;">To Station</label>
-                    <label style="margin: 5px 10px 5px 0;">Price</label>
-                </div>
-                @for (int i = 0; i < table.Rows.Count; i++)
-                {
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
+    <div class="container align-content-center">
+        <form method="post" action="/Booking/SelectTrain">
+            <div class="jumbotron jumbotron-fluid align-content-center">
+                <div class="container-fluid justify-content-center">
+                    <div style="display:inline; padding: 10px;">
+                        <label style="margin: 5px 10px 5px 0;">Train Name</label>
+                        <label style="margin: 5px 10px 5px 0;">Seats</label>
+                        <label style="margin: 5px 10px 5px 0;">From Time</label>
+                        <label style="margin: 5px 10px 5px 0;">To Time</label>
+                        <label style="margin: 5px 10px 5px 0;"> Date</label>
+                        <label style="margin: 5px 10px 5px 0;">From Station</label>
+                        <label style="margin: 5px 10px 5px 0;">To Station</label>
+                        <label style="margin: 5px 10px 5px 0;">Price</label>
+                    </div>
+                    @for (int i = 0; i < table.Rows.Count; i++)
+                    {
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
 
-                                <input type="radio" class="form-check-input" name="checklist" id="ss" value="@table.Rows[i].ItemArray[0]" tabindex="@i+1" onclick="return MutExChkList(this);">
-                                <label>@table.Rows[i].ItemArray[2] - @table.Rows[i].ItemArray[3] - @table.Rows[i].ItemArray[4] - @table.Rows[i].ItemArray[5] - @table.Rows[i].ItemArray[6] - @table.Rows[i].ItemArray[7] - @table.Rows[i].ItemArray[8] - @table.Rows[i].ItemArray[9]</label>
-                                @*<label><input type ="hidden" name="price" class="form-control" id="exampleInputArrival" value="@table.Rows[i].ItemArray[9]" /></label>*@
+                                    <input type="radio" class="form-check-input" name="checklist" id="ss" value="@table.Rows[i].ItemArray[0]" tabindex="@i+1" onclick="return MutExChkList(this);">
+                                    <label>@table.Rows[i].ItemArray[2] - @table.Rows[i].ItemArray[3] - @table.Rows[i].ItemArray[4] - @table.Rows[i].ItemArray[5] - @table.Rows[i].ItemArray[6] - @table.Rows[i].ItemArray[7] - @table.Rows[i].ItemArray[8] - @table.Rows[i].ItemArray[9]</label>
+                                    @*<label><input type ="hidden" name="price" class="form-control" id="exampleInputArrival" value="@table.Rows[i].ItemArray[9]" /></label>*@
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputArrival"></label>
+                    <input type="hidden" name="email" class="form-control" id="exampleInputArrival" value="@ViewData["emaill"]">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputArrival"></label>
+                    <input type="hidden" name="nfp" class="form-control" id="exampleInputArrival" value="@ViewData["Pasengers"]">
+                </div>
+
+            </div>
+            <div class="buttonContainer">
+                <a href="BookTicket.html"><button type="button" class="btn-lg btn-success">Back</button></a>
+                <a href="" data-toggle="modal" data-target="#staticBackdrop"><button type="button" class="btn-lg btn-success">Next</button></a>
+            </div>
+            @*</form>*@
+            <div>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Payment Method</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<form method="post" action ="/Booking/SelectTrain">*@
+                                <div class="form-group">
+                                    <p class="lead"><label for="exampleFormControlInput1 align-items-center">Do you want to pay online?</label></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" name="sbutton" value="yes" class="btn btn-secondary">Yes</button>
+                                    <button type="submit" name="sbutton" value="no" class="btn btn-secondary">No/Submit</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                }
-
-            </div>
-            <div class="form-group">
-                <label for="exampleInputArrival"></label>
-                <input type="hidden" name="email" class="form-control" id="exampleInputArrival" value="@ViewData["emaill"]">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputArrival"></label>
-                <input type="hidden" name="nfp" class="form-control" id="exampleInputArrival" value="@ViewData["Pasengers"]">
-            </div>
-            
-        </div>
-    <div class="buttonContainer">
-        <a href="BookTicket.html"><button type="button" class="btn-lg btn-success">Back</button></a>
-        <a href="" data-toggle="modal" data-target="#staticBackdrop"><button type="button" class="btn-lg btn-success">Next</button></a>
-    </div>
-    @*</form>*@
-    <div>
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Payment Method</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @*<form method="post" action ="/Booking/SelectTrain">*@
-                            <div class="form-group">
-                                <p class="lead"><label for="exampleFormControlInput1 align-items-center">Do you want to pay online?</label></p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" name ="sbutton" value="yes" class="btn btn-secondary">Yes</button>
-                                <button type="submit" name="sbutton" value="no" class="btn btn-secondary">No/Submit</button>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </form>
+    </div>    
+    
+    
+                
+            
+   
 
 
     <script src="~/webPages/js/jquery.js"></script>
