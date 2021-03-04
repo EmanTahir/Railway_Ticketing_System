@@ -7,8 +7,8 @@ SQL Server Management Studio
 VSCode
 Visual Studio
 
-Project Feasibility Report Link: 
-Project SRS document link: 
-SQL database: 
-Project Diagrams Document link:
+Project Feasibility Report Link: http://bit.ly/SE_FeasibiityStudy
+Project SRS document link: http://bit.ly/SE_Project_SRS
+SQL database: http://bit.ly/SE_Project_Database
+Project Diagrams Document link: http://bit.ly/SE_Project_Diagrams
 Project Configuration Document link: 
